@@ -1,24 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import LightContext from './LightContext'
+import Main from './Main'
+import {useState} from 'react'
 
 function App() {
+    const [light, setLight] = useState(true)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+          <button onClick={ () => setLight(!light) }>
+              {light ? 'LIGHT IS ON' : 'LIGHT IS OFF'}
+          </button>
+
+          <LightContext.Provider value={{ light: light }}>
+              <Main />
+          </LightContext.Provider>
+      </div>
+
   );
 }
 
